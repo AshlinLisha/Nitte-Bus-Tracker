@@ -1,0 +1,23 @@
+DEPLOY NITTE BUS TRACKER USING GITHUB + RENDER
+
+This package is prepared for Docker-based deployment on Render.
+
+1. Extract this ZIP on a device/browser that can upload files to GitHub.
+2. Create a new GitHub repository.
+3. Upload the CONTENTS of this folder (not the outer folder itself), including:
+   - Dockerfile
+   - pom.xml
+   - src/
+   - .dockerignore
+4. Open https://render.com/ and sign in.
+5. Choose New + -> Web Service, then connect GitHub and select the repository.
+6. Select Docker as the runtime/environment. Keep the Dockerfile path as ./Dockerfile.
+7. Create the service and wait for the build/deploy to finish.
+8. Open the onrender.com URL shown by Render.
+
+The application reads Render's PORT environment variable through
+src/main/resources/application.properties.
+
+Note: Render's free web services may sleep after inactivity and can take time to
+wake up on the next visit. The timetable data is sample/transcribed data and is
+not live bus tracking. A successful deployment has not yet been verified here.

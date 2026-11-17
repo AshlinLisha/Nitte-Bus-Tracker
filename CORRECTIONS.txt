@@ -1,0 +1,15 @@
+NITTE BUS TRACKER — CORRECTION NOTES
+
+1. Bus.java now validates timetable times and handles null/blank text safely.
+2. Afternoon timetable entries 1:00–5:59 are converted to 13:00–17:59 internally.
+3. Search time filters are validated as 24-hour values.
+4. A filter range crossing midnight is handled correctly instead of swapping its endpoints.
+5. Original timetable entries and labels have been preserved; they have not been independently verified.
+
+Run:
+  mvn spring-boot:run
+
+Then open:
+  http://localhost:8080
+
+Requirements: Java 17+ and Maven 3.8+.
