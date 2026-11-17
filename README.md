@@ -3,6 +3,7 @@
 ## Live Website
 
 [Click here to open Nitte Bus Tracker]((https://nitte-bus-tracker.onrender.com/))
+https://nitte-bus-tracker.onrender.com/
 
 A starter website for searching bus timetable entries from Nitte by bus name, time range, service type and destination. It also counts departures by bus name.
 
