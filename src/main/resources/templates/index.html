@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nitte Bus Tracker</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<header class="hero">
+  <div class="brand">NBT <span>NMAMIT Nitte</span></div>
+  <p class="eyebrow">LOCAL BUS TIMETABLE</p>
+  <h1>Nitte Bus Tracker</h1>
+  <p class="subtitle">Find the next listed bus, compare routes, and explore departures by bus name.</p>
+  <div class="stats">
+    <div><strong th:text="${totalCount}">0</strong><span>timetable entries</span></div>
+    <div><strong th:text="${counts.size()}">0</strong><span>bus names</span></div>
+    <div><strong>5</strong><span>destination areas and more</span></div>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="section-title"><div><p class="eyebrow">PLAN YOUR JOURNEY</p><h2>Find a bus</h2></div><a class="reset" th:href="@{/}">Reset filters ↺</a></div>
+    <form method="get" action="/">
+      <label>Bus name
+        <input type="text" name="name" placeholder="e.g. Vishal, Sangam" th:value="${name}">
+      </label>
+      <label>Destination
+        <select name="destination">
+          <option value="">All destinations</option>
+          <option th:each="d : ${destinations}" th:value="${d}" th:text="${d}" th:selected="${d == destination}"></option>
+        </select>
+      </label>
+      <label>Service type
+        <select name="type">
+          <option value="">All service types</option>
+          <option th:each="t : ${types}" th:value="${t}" th:text="${t}" th:selected="${t == type}"></option>
+        </select>
+      </label>
+      <label>From time
+        <input type="time" name="from" th:value="${from}">
+      </label>
+      <label>To time
+        <input type="time" name="to" th:value="${to}">
+      </label>
+      <button type="submit">Search timetable</button>
+    </form>
+  </section>
+
+  <section class="results">
+    <div class="section-title"><div><p class="eyebrow">DEPARTURES</p><h2>Matching buses</h2></div><span class="result-count" th:text="${buses.size()} + ' results'">0 results</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Time</th><th>Bus name</th><th>Service</th><th>Destination</th><th>Route note</th></tr></thead>
+        <tbody>
+          <tr th:each="bus : ${buses}">
+            <td class="time" th:text="${bus.time}">8:00</td>
+            <td class="busname" th:text="${bus.name}">Vishal</td>
+            <td><span class="tag" th:text="${bus.type}">Express</span></td>
+            <td th:text="${bus.destination}">Mangalore</td>
+            <td th:text="${bus.route.isBlank() ? '—' : bus.route}">—</td>
+          </tr>
+          <tr th:if="${buses.isEmpty()}"><td colspan="5" class="empty">No buses match those filters. Try a wider time range or clear a filter.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel counts">
+    <div class="section-title"><div><p class="eyebrow">REPEATED SERVICES</p><h2>Departures by bus name</h2></div></div>
+    <p class="hint">Counts are based on the timetable entries included in this starter project.</p>
+    <div class="count-grid">
+      <div class="count-card" th:each="entry : ${counts}">
+        <span th:text="${entry.key}">Vishal</span>
+        <strong th:text="${entry.value}">12</strong>
+        <small>listed departures</small>
+      </div>
+    </div>
+  </section>
+  <p class="disclaimer">Important: These are timetable entries transcribed from the uploaded reference PDF, not live bus tracking. Confirm timings and route details locally before travelling. Some source entries may be incomplete or outdated.</p>
+</main>
+<footer>Made for NMAMIT Nitte students and the local community.</footer>
+</body>
+</html>
