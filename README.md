@@ -1,5 +1,9 @@
 # Nitte Bus Tracker (Java Spring Boot)
 
+## Live Website
+
+[Click here to open Nitte Bus Tracker](https://YOUR-RENDER-LINK.onrender.com)
+
 A starter website for searching bus timetable entries from Nitte by bus name, time range, service type and destination. It also counts departures by bus name.
 
 ## Requirements
